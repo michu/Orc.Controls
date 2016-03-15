@@ -1,0 +1,133 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Orc.Controls"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <Style x:Key="SpinButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="Chrome"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            Background="#FFF4F4F4"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="Chrome" Value="{DynamicResource SpinButtonHighlightBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="Chrome" Value="{DynamicResource SpinButtonAccentBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" TargetName="Chrome" Value="{DynamicResource SpinButtonAccentBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="#FFADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Spinner}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Spinner}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="GridColumn1" Width="*"/>
+                                <ColumnDefinition x:Name="GridColumn2" Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="ContentPresenter" Grid.Column="0" Content="{TemplateBinding Content}"/>
+                            <Grid x:Name="GridNormalButtons" Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <RepeatButton x:Name="SpinUpNormalButton" Grid.Row="0" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                    <Path Fill="Black" Data="M 0 4 L 4 0 L 8 4 Z"/>
+                                </RepeatButton>
+                                <RepeatButton x:Name="SpinDownNormalButton" Grid.Row="1" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                    <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                </RepeatButton>
+                            </Grid>
+                            <Grid x:Name="GridLargeButtons" Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <RepeatButton x:Name="SpinUpLargeButton" Grid.Column="0" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                    <Path Fill="Black" Data="M 0 4 L 4 0 L 8 4 Z"/>
+                                </RepeatButton>
+                                <RepeatButton x:Name="SpinDownLargeButton" Grid.Column="1" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                    <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                </RepeatButton>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SpinButtonsLocation" Value="Right">
+                            <Setter TargetName="ContentPresenter" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="GridNormalButtons" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="GridLargeButtons" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="GridColumn1" Property="Width" Value="*"/>
+                            <Setter TargetName="GridColumn2" Property="Width" Value="Auto"/>
+                        </Trigger>
+                        <Trigger Property="SpinButtonsLocation" Value="Left">
+                            <Setter TargetName="ContentPresenter" Property="Grid.Column" Value="1"/>
+                            <Setter TargetName="GridNormalButtons" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="GridLargeButtons" Property="Grid.Column" Value="0"/>
+                            <Setter TargetName="GridColumn1" Property="Width" Value="Auto"/>
+                            <Setter TargetName="GridColumn2" Property="Width" Value="*"/>
+                        </Trigger>
+                        <Trigger Property="ShowSpinButtons" Value="False">
+                            <Setter TargetName="GridLargeButtons" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="GridNormalButtons" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ShowSpinButtons" Value="True"/>
+                                <Condition Property="SpinButtonsSize" Value="Normal"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="GridLargeButtons" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="GridNormalButtons" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ShowSpinButtons" Value="True"/>
+                                <Condition Property="SpinButtonsSize" Value="Large"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="GridLargeButtons" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="GridNormalButtons" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
