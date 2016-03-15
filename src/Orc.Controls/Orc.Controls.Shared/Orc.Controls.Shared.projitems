@@ -10,6 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)..\..\SolutionAssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinButtonsLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinButtonsSize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Events\SpinEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Spinner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ValidationContextControl\Services\Interfaces\IValidationNamesService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ValidationContextControl\Converters\ValidationResultTypeToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ValidationContextControl\Extensions\IValidationContextTreeNodeExtensions.cs" />
@@ -145,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\ValidationContextControl\Views\ValidationContextTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+	<Page Include="$(MSBuildThisFileDirectory)Controls\Spinner\Themes\Spinner.generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

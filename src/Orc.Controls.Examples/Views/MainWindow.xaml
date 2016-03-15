@@ -176,6 +176,10 @@
             <views:SaveFilePickerView />
         </TabItem>
 
+        <TabItem Header="Spinner">
+            <views:SpinnerView />
+        </TabItem>
+
         <TabItem Header="TimeSpan">
             <views:TimeSpan />
         </TabItem>

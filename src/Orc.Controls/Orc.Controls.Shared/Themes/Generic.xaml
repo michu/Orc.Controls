@@ -32,5 +32,7 @@
         
         <ResourceDictionary Source="/Orc.Controls;component/Controls/ValidationContextControl/Themes/ValidationContextControl.generic.xaml" />
 
+        <ResourceDictionary Source="/Orc.Controls;component/Controls/Spinner/Themes/Spinner.generic.xaml" />
+        
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

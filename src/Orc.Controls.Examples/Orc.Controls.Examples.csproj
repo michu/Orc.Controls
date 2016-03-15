@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\ExpanderViewModel.cs" />
     <Compile Include="ViewModels\OpenFilePickerViewModel.cs" />
     <Compile Include="ViewModels\PinnableToolTipViewModel.cs" />
+    <Compile Include="ViewModels\SpinnerViewModel.cs" />
     <Compile Include="ViewModels\ValidationContextControlViewModel.cs" />
     <Compile Include="Views\AnimatedGif.xaml.cs">
       <DependentUpon>AnimatedGif.xaml</DependentUpon>
@@ -171,6 +172,9 @@
     </Compile>
     <Compile Include="Views\SaveFilePickerView.xaml.cs">
       <DependentUpon>SaveFilePickerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpinnerView.xaml.cs">
+      <DependentUpon>SpinnerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimeSpan.xaml.cs">
       <DependentUpon>TimeSpan.xaml</DependentUpon>
@@ -258,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SaveFilePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SpinnerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
