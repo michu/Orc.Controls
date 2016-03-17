@@ -59,6 +59,15 @@ namespace Orc.Controls
         public static readonly DependencyProperty SpinOnKeyboardEventsProperty = DependencyProperty.Register("SpinOnKeyboardEvents", typeof(bool),
             typeof(Spinner), new PropertyMetadata(true));
 
+        public bool SpinOnMouseEvents
+        {
+            get { return (bool)GetValue(SpinOnMouseEventsProperty); }
+            set { SetValue(SpinOnMouseEventsProperty, value); }
+        }
+
+        public static readonly DependencyProperty SpinOnMouseEventsProperty = DependencyProperty.Register("SpinOnMouseEvents", typeof(bool),
+            typeof(Spinner), new PropertyMetadata(true));
+
         public bool ShowSpinButtons
         {
             get { return (bool)GetValue(ShowSpinButtonsProperty); }
@@ -86,29 +95,10 @@ namespace Orc.Controls
         public static readonly DependencyProperty SpinButtonsSizeProperty = DependencyProperty.Register("SpinButtonsSize", typeof(SpinButtonsSize),
             typeof(Spinner), new PropertyMetadata(SpinButtonsSize.Normal));
 
-        private RepeatButton SpinDownLargeButton
-        {
-            get;
-            set;
-        }
-
-        private RepeatButton SpinDownNormalButton
-        {
-            get;
-            set;
-        }
-
-        private RepeatButton SpinUpLargeButton
-        {
-            get;
-            set;
-        }
-
-        private RepeatButton SpinUpNormalButton
-        {
-            get;
-            set;
-        }
+        private RepeatButton SpinDownLargeButton { get; set; }
+        private RepeatButton SpinDownNormalButton { get; set; }
+        private RepeatButton SpinUpLargeButton { get; set; }
+        private RepeatButton SpinUpNormalButton { get; set; }
 
         #endregion
 
@@ -135,6 +125,27 @@ namespace Orc.Controls
             SpinUpNormalButton = GetTemplateChild("SpinUpNormalButton") as RepeatButton;
 
             SubscribeSpinButtons();
+        }
+
+        protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
+        {
+            if(SpinOnMouseEvents)
+            {
+                if(e.Delta > 0)
+                {
+                    Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Up));
+
+                    e.Handled = true;
+                }
+                else if(e.Delta < 0)
+                {
+                    Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Down));
+
+                    e.Handled = true;
+                }
+            }
+
+            base.OnPreviewMouseWheel(e);
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)

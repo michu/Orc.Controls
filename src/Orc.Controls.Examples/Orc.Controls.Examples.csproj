@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\EnumToBooleanConverter.cs" />
     <Compile Include="Logging\ExampleLogListener.cs" />
     <Compile Include="ModuleInitializer.cs" />
     <Compile Include="ViewModels\AnimatedGifViewModel.cs" />
