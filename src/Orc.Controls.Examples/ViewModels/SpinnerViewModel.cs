@@ -36,7 +36,7 @@ namespace Orc.Controls.Examples.ViewModels
         #region Methods
         private void OnSpinExecute(SpinEventArgs args)
         {
-            if(args.Direction == SpinDirection.Up)
+            if (args.Direction == SpinDirection.Up)
             {
                 Value++;
             }

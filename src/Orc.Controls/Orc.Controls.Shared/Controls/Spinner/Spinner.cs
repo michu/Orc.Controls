@@ -129,23 +129,23 @@ namespace Orc.Controls
 
         protected override void OnPreviewMouseWheel(MouseWheelEventArgs e)
         {
-            if(SpinOnMouseEvents)
+            base.OnPreviewMouseWheel(e);
+
+            if (SpinOnMouseEvents)
             {
-                if(e.Delta > 0)
+                if (e.Delta > 0)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Up));
 
                     e.Handled = true;
                 }
-                else if(e.Delta < 0)
+                else if (e.Delta < 0)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Down));
 
                     e.Handled = true;
                 }
             }
-
-            base.OnPreviewMouseWheel(e);
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
