@@ -41,6 +41,24 @@ namespace Orc.Controls
         public static readonly DependencyProperty AccentColorBrushProperty = DependencyProperty.Register("AccentColorBrush", typeof(Brush),
             typeof(Spinner), new FrameworkPropertyMetadata(Brushes.LightGray, (sender, e) => ((Spinner)sender).OnAccentColorBrushChanged()));
 
+        public bool AllowSpinDown
+        {
+            get { return (bool)GetValue(AllowSpinDownProperty); }
+            set { SetValue(AllowSpinDownProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowSpinDownProperty = DependencyProperty.Register("AllowSpinDown", typeof(bool),
+            typeof(Spinner), new PropertyMetadata(true));
+
+        public bool AllowSpinUp
+        {
+            get { return (bool)GetValue(AllowSpinUpProperty); }
+            set { SetValue(AllowSpinUpProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowSpinUpProperty = DependencyProperty.Register("AllowSpinUp", typeof(bool),
+            typeof(Spinner), new PropertyMetadata(true));
+
         public object Content
         {
             get { return (object)GetValue(ContentProperty); }
@@ -49,6 +67,15 @@ namespace Orc.Controls
 
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object),
             typeof(Spinner), new PropertyMetadata(null));
+
+        public bool IsReadOnly
+        {
+            get { return (bool)GetValue(IsReadOnlyProperty); }
+            set { SetValue(IsReadOnlyProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register("IsReadOnly", typeof(bool),
+            typeof(Spinner), new PropertyMetadata(false));
 
         public bool SpinOnKeyboardEvents
         {
@@ -131,15 +158,15 @@ namespace Orc.Controls
         {
             base.OnPreviewMouseWheel(e);
 
-            if (SpinOnMouseEvents)
+            if (SpinOnMouseEvents && !IsReadOnly)
             {
-                if (e.Delta > 0)
+                if (e.Delta > 0 && AllowSpinUp)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Up));
 
                     e.Handled = true;
                 }
-                else if (e.Delta < 0)
+                else if (e.Delta < 0 && AllowSpinDown)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Down));
 
@@ -150,15 +177,15 @@ namespace Orc.Controls
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            if (SpinOnKeyboardEvents)
+            if (SpinOnKeyboardEvents && !IsReadOnly)
             {
-                if (e.Key == Key.Up)
+                if (e.Key == Key.Up && AllowSpinUp)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Up));
 
                     e.Handled = true;
                 }
-                else if (e.Key == Key.Down)
+                else if (e.Key == Key.Down && AllowSpinDown)
                 {
                     Spin.SafeInvoke<SpinEventArgs>(this, new SpinEventArgs(SpinDirection.Down));
 

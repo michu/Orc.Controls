@@ -64,10 +64,10 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <RepeatButton x:Name="SpinUpNormalButton" Grid.Row="0" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinUpNormalButton" Grid.Row="0" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 4 L 4 0 L 8 4 Z"/>
                                 </RepeatButton>
-                                <RepeatButton x:Name="SpinDownNormalButton" Grid.Row="1" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinDownNormalButton" Grid.Row="1" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
                                 </RepeatButton>
                             </Grid>
@@ -77,10 +77,10 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <RepeatButton x:Name="SpinUpLargeButton" Grid.Column="0" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinUpLargeButton" Grid.Column="0" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 4 L 4 0 L 8 4 Z"/>
                                 </RepeatButton>
-                                <RepeatButton x:Name="SpinDownLargeButton" Grid.Column="1" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinDownLargeButton" Grid.Column="1" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
                                 </RepeatButton>
                             </Grid>
@@ -105,6 +105,26 @@
                             <Setter TargetName="GridLargeButtons" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="GridNormalButtons" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="AllowSpinUp" Value="True"/>
+                                <Condition Property="IsReadOnly" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="SpinUpLargeButton" Property="IsEnabled" Value="True"/>
+                                <Setter TargetName="SpinUpNormalButton" Property="IsEnabled" Value="True"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="AllowSpinDown" Value="True"/>
+                                <Condition Property="IsReadOnly" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="SpinDownLargeButton" Property="IsEnabled" Value="True"/>
+                                <Setter TargetName="SpinDownNormalButton" Property="IsEnabled" Value="True"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="ShowSpinButtons" Value="True"/>
