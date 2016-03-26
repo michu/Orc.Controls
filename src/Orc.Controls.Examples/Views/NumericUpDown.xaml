@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </catel:StackGrid.RowDefinitions>
 
-        <orc:NumericUpDown IsDecimalAllowed="True"
+        <orc:NumericUpDown IsDecimalAllowed="{Binding IsDecimalAllowed}"
                            IsReadOnly="{Binding IsChecked, ElementName=ReadOnlyCheckBox}"
                            MinimumValue="0"
                            MaximumValue="10"
@@ -29,6 +29,7 @@
                            Value="0"/>
         
         <StackPanel Orientation="Vertical" Margin="0 6 0 0">
+            <CheckBox Content="Allow decimals" IsChecked="{Binding IsDecimalAllowed}" Margin="0 6 0 0"/>
             <CheckBox x:Name="ReadOnlyCheckBox" Content="Read only" Margin="0 6 0 0"/>
             <CheckBox Content="Show spin buttons" IsChecked="{Binding ShowSpinButtons}" Margin="0 6 0 0"/>
             <CheckBox Content="Spin on keyboard events" IsChecked="{Binding SpinOnKeyboardEvents}" Margin="0 6 0 0"/>

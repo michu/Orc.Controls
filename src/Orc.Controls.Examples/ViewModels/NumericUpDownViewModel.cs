@@ -20,6 +20,7 @@ namespace Orc.Controls.Examples.ViewModels
         #region Constructors
         public NumericUpDownViewModel()
         {
+            IsDecimalAllowed = true;
             ShowSpinButtons = true;
             SpinButtonsLocation = SpinButtonsLocation.Right;
             SpinButtonsSize = SpinButtonsSize.Normal;
@@ -29,6 +30,7 @@ namespace Orc.Controls.Examples.ViewModels
         #endregion
 
         #region Properties
+        public bool IsDecimalAllowed { get; set; }
         public bool ShowSpinButtons { get; set; }
         public SpinButtonsLocation SpinButtonsLocation { get; set; }
         public SpinButtonsSize SpinButtonsSize { get; set; }
