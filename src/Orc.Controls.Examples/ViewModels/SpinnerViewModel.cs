@@ -16,7 +16,6 @@ namespace Orc.Controls.Examples.ViewModels
         {
             AllowSpinDown = true;
             AllowSpinUp = true;
-            ReadOnly = false;
             ShowSpinButtons = true;
             SpinButtonsLocation = SpinButtonsLocation.Right;
             SpinButtonsSize = SpinButtonsSize.Normal;
@@ -29,7 +28,6 @@ namespace Orc.Controls.Examples.ViewModels
         #region Properties
         public bool AllowSpinDown { get; set; }
         public bool AllowSpinUp { get; set; }
-        public bool ReadOnly { get; set; }
         public bool ShowSpinButtons { get; set; }
         public SpinButtonsLocation SpinButtonsLocation { get; set; }
         public SpinButtonsSize SpinButtonsSize { get; set; }

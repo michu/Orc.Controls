@@ -68,15 +68,6 @@ namespace Orc.Controls
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object),
             typeof(Spinner), new PropertyMetadata(null));
 
-        public bool IsReadOnly
-        {
-            get { return (bool)GetValue(IsReadOnlyProperty); }
-            set { SetValue(IsReadOnlyProperty, value); }
-        }
-
-        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register("IsReadOnly", typeof(bool),
-            typeof(Spinner), new PropertyMetadata(false));
-
         public bool SpinOnKeyboardEvents
         {
             get { return (bool)GetValue(SpinOnKeyboardEventsProperty); }
@@ -158,7 +149,7 @@ namespace Orc.Controls
         {
             base.OnPreviewMouseWheel(e);
 
-            if (SpinOnMouseEvents && !IsReadOnly)
+            if (SpinOnMouseEvents)
             {
                 if (e.Delta > 0 && AllowSpinUp)
                 {
@@ -177,7 +168,7 @@ namespace Orc.Controls
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            if (SpinOnKeyboardEvents && !IsReadOnly)
+            if (SpinOnKeyboardEvents)
             {
                 if (e.Key == Key.Up && AllowSpinUp)
                 {

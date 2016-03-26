@@ -19,7 +19,6 @@
         </catel:StackGrid.RowDefinitions>
         <orc:Spinner AllowSpinDown="{Binding AllowSpinDown}"
                      AllowSpinUp="{Binding AllowSpinUp}"
-                     IsReadOnly="{Binding ReadOnly}"
                      ShowSpinButtons="{Binding ShowSpinButtons}"
                      SpinButtonsLocation="{Binding SpinButtonsLocation}"
                      SpinButtonsSize="{Binding SpinButtonsSize}"
@@ -36,7 +35,6 @@
         <StackPanel Orientation="Vertical" Margin="0 6 0 0">
             <CheckBox Content="Allow spin down" IsChecked="{Binding AllowSpinDown}" Margin="0 6 0 0"/>
             <CheckBox Content="Allow spin up" IsChecked="{Binding AllowSpinUp}" Margin="0 6 0 0"/>
-            <CheckBox Content="Read only" IsChecked="{Binding ReadOnly}" Margin="0 6 0 0"/>
             <CheckBox Content="Show spin buttons" IsChecked="{Binding ShowSpinButtons}" Margin="0 6 0 0"/>
             <CheckBox Content="Spin on keyboard events" IsChecked="{Binding SpinOnKeyboardEvents}" Margin="0 6 0 0"/>
             <CheckBox Content="Spin on mouse events" IsChecked="{Binding SpinOnMouseEvents}" Margin="0 6 0 0"/>
