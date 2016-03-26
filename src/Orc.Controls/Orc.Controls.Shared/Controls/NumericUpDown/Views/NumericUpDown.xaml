@@ -1,0 +1,35 @@
+﻿<catel:UserControl x:Class="Orc.Controls.NumericUpDown"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                   xmlns:catel="http://catel.codeplex.com"
+                   xmlns:local="clr-namespace:Orc.Controls">
+
+    <catel:StackGrid>
+        <catel:StackGrid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </catel:StackGrid.RowDefinitions>
+
+        <local:Spinner ShowSpinButtons="{Binding ShowSpinButtons}"
+                       SpinButtonsLocation="{Binding SpinButtonsLocation}"
+                       SpinButtonsSize="{Binding SpinButtonsSize}"
+                       SpinOnKeyboardEvents="{Binding SpinOnKeyboardEvents}"
+                       SpinOnMouseEvents="{Binding SpinOnMouseEvents}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Spin">
+                    <catel:EventToCommand Command="{Binding Spin}"
+                                          DisableAssociatedObjectOnCannotExecute="False"
+                                          PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TextBox Text="{Binding Value}">
+                <i:Interaction.Behaviors>
+                    <catel:NumericTextBox IsDecimalAllowed="{Binding IsDecimalAllowed}"
+                                          IsNegativeAllowed="True"
+                                          UpdateBindingOnTextChanged="False"/>
+                </i:Interaction.Behaviors>
+            </TextBox>
+        </local:Spinner>
+    </catel:StackGrid>
+
+</catel:UserControl>

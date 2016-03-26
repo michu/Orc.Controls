@@ -114,6 +114,7 @@
     <Compile Include="ViewModels\DatePickerViewModel.cs" />
     <Compile Include="ViewModels\DirectoryPickerViewModel.cs" />
     <Compile Include="ViewModels\ExpanderViewModel.cs" />
+    <Compile Include="ViewModels\NumericUpDownViewModel.cs" />
     <Compile Include="ViewModels\OpenFilePickerViewModel.cs" />
     <Compile Include="ViewModels\PinnableToolTipViewModel.cs" />
     <Compile Include="ViewModels\SpinnerViewModel.cs" />
@@ -132,6 +133,9 @@
     </Compile>
     <Compile Include="Views\Expander.xaml.cs">
       <DependentUpon>Expander.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpenFilePickerView.xaml.cs">
       <DependentUpon>OpenFilePickerView.xaml</DependentUpon>
@@ -205,6 +209,10 @@
     <Page Include="Views\Expander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OpenFilePickerView.xaml">
       <SubType>Designer</SubType>

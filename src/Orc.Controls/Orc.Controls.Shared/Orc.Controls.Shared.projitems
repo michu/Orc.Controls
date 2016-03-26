@@ -10,6 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)..\..\SolutionAssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\ViewModels\NumericUpDownViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\Views\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinButtonsLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinButtonsSize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Spinner\Enums\SpinDirection.cs" />
@@ -145,6 +150,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\Themes\NumericUpDown.generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\Views\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\ValidationContextControl\Themes\ValidationContextTree.generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	<Page Include="$(MSBuildThisFileDirectory)Controls\Spinner\Themes\Spinner.generic.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Spinner\Themes\Spinner.generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
