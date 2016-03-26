@@ -32,13 +32,15 @@
             </i:Interaction.Triggers>
             <TextBox IsReadOnly="True" Text="{Binding Value}"/>
         </orc:Spinner>
+        
         <StackPanel Orientation="Vertical" Margin="0 6 0 0">
-            <CheckBox Content="Allow spin down" IsChecked="{Binding AllowSpinDown}" Margin="0 6 0 0"/>
             <CheckBox Content="Allow spin up" IsChecked="{Binding AllowSpinUp}" Margin="0 6 0 0"/>
+            <CheckBox Content="Allow spin down" IsChecked="{Binding AllowSpinDown}" Margin="0 6 0 0"/>
             <CheckBox Content="Show spin buttons" IsChecked="{Binding ShowSpinButtons}" Margin="0 6 0 0"/>
             <CheckBox Content="Spin on keyboard events" IsChecked="{Binding SpinOnKeyboardEvents}" Margin="0 6 0 0"/>
             <CheckBox Content="Spin on mouse events" IsChecked="{Binding SpinOnMouseEvents}" Margin="0 6 0 0"/>
         </StackPanel>
+        
         <catel:StackGrid>
             <catel:StackGrid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

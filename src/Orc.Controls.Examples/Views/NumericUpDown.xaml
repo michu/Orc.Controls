@@ -2,14 +2,61 @@
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:catel="http://catel.codeplex.com"
+                   xmlns:local="clr-namespace:Orc.Controls.Examples.Converters"
                    xmlns:orc="http://www.wildgums.net.au/orc">
 
+    <!-- Resources -->
+    <UserControl.Resources>
+    </UserControl.Resources>
+
+    <!-- Content -->
     <catel:StackGrid>
         <catel:StackGrid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </catel:StackGrid.RowDefinitions>
 
-        <orc:NumericUpDown IsDecimalAllowed="True" MinimumValue="0" MaximumValue="10" Value="0"/>
+        <orc:NumericUpDown IsDecimalAllowed="True"
+                           IsReadOnly="{Binding IsChecked, ElementName=ReadOnlyCheckBox}"
+                           MinimumValue="0"
+                           MaximumValue="10"
+                           ShowSpinButtons="{Binding ShowSpinButtons}"
+                           SpinButtonsLocation="{Binding SpinButtonsLocation}"
+                           SpinButtonsSize="{Binding SpinButtonsSize}"
+                           SpinOnKeyboardEvents="{Binding SpinOnKeyboardEvents}"
+                           SpinOnMouseEvents="{Binding SpinOnMouseEvents}"
+                           Value="0"/>
+        
+        <StackPanel Orientation="Vertical" Margin="0 6 0 0">
+            <CheckBox x:Name="ReadOnlyCheckBox" Content="Read only" Margin="0 6 0 0"/>
+            <CheckBox Content="Show spin buttons" IsChecked="{Binding ShowSpinButtons}" Margin="0 6 0 0"/>
+            <CheckBox Content="Spin on keyboard events" IsChecked="{Binding SpinOnKeyboardEvents}" Margin="0 6 0 0"/>
+            <CheckBox Content="Spin on mouse events" IsChecked="{Binding SpinOnMouseEvents}" Margin="0 6 0 0"/>
+        </StackPanel>
+        
+        <catel:StackGrid>
+            <catel:StackGrid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </catel:StackGrid.ColumnDefinitions>
+            <catel:StackGrid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </catel:StackGrid.RowDefinitions>
+            <Label Content="Spin buttons location:" Margin="0 6 6 0" Padding="0"/>
+            <RadioButton Content="Left" GroupName="GroupLocation" VerticalAlignment="Center" Margin="0 6 0 0"
+                         IsChecked="{Binding SpinButtonsLocation, Converter={local:EnumToBooleanConverter}, ConverterParameter={x:Static orc:SpinButtonsLocation.Left}}"/>
+            <RadioButton Content="Right" GroupName="GroupLocation" VerticalAlignment="Center" Margin="6 6 0 0"
+                         IsChecked="{Binding SpinButtonsLocation, Converter={local:EnumToBooleanConverter}, ConverterParameter={x:Static orc:SpinButtonsLocation.Right}}"/>
+            <Label Content="Spin buttons size:" Margin="0 6 6 0" Padding="0"/>
+            <RadioButton Content="Normal" GroupName="GroupSize" VerticalAlignment="Center" Margin="0 6 0 0"
+                         IsChecked="{Binding SpinButtonsSize, Converter={local:EnumToBooleanConverter}, ConverterParameter={x:Static orc:SpinButtonsSize.Normal}}"/>
+            <RadioButton Content="Large" GroupName="GroupSize" VerticalAlignment="Center" Margin="6 6 0 0"
+                         IsChecked="{Binding SpinButtonsSize, Converter={local:EnumToBooleanConverter}, ConverterParameter={x:Static orc:SpinButtonsSize.Large}}"/>
+        </catel:StackGrid>
+        
     </catel:StackGrid>
 
 </catel:UserControl>

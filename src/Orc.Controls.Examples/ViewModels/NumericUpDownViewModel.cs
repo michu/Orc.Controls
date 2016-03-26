@@ -20,8 +20,20 @@ namespace Orc.Controls.Examples.ViewModels
         #region Constructors
         public NumericUpDownViewModel()
         {
-
+            ShowSpinButtons = true;
+            SpinButtonsLocation = SpinButtonsLocation.Right;
+            SpinButtonsSize = SpinButtonsSize.Normal;
+            SpinOnKeyboardEvents = true;
+            SpinOnMouseEvents = true;
         }
+        #endregion
+
+        #region Properties
+        public bool ShowSpinButtons { get; set; }
+        public SpinButtonsLocation SpinButtonsLocation { get; set; }
+        public SpinButtonsSize SpinButtonsSize { get; set; }
+        public bool SpinOnKeyboardEvents { get; set; }
+        public bool SpinOnMouseEvents { get; set; }
         #endregion
     }
 }

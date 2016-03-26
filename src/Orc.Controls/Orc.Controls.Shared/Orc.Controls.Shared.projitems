@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)..\..\SolutionAssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\Converters\AllowSpinMultiValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\ViewModels\NumericUpDownViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\NumericUpDown\Views\NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>

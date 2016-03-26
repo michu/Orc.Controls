@@ -43,6 +43,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:Spinner}">
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -77,16 +78,24 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <RepeatButton x:Name="SpinUpLargeButton" Grid.Column="0" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinUpLargeButton" Grid.Column="0" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 4 L 4 0 L 8 4 Z"/>
                                 </RepeatButton>
-                                <RepeatButton x:Name="SpinDownLargeButton" Grid.Column="1" IsEnabled="False" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <RepeatButton x:Name="SpinDownLargeButton" Grid.Column="1" Style="{DynamicResource SpinButton}" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                     <Path Fill="Black" Data="M 0 0 L 4 4 L 8 0 Z"/>
                                 </RepeatButton>
                             </Grid>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="AllowSpinDown" Value="False">
+                            <Setter TargetName="SpinDownLargeButton" Property="IsEnabled" Value="False"/>
+                            <Setter TargetName="SpinDownNormalButton" Property="IsEnabled" Value="False"/>
+                        </Trigger>
+                        <Trigger Property="AllowSpinUp" Value="False">
+                            <Setter TargetName="SpinUpLargeButton" Property="IsEnabled" Value="False"/>
+                            <Setter TargetName="SpinUpNormalButton" Property="IsEnabled" Value="False"/>
+                        </Trigger>
                         <Trigger Property="SpinButtonsLocation" Value="Right">
                             <Setter TargetName="ContentPresenter" Property="Grid.Column" Value="0"/>
                             <Setter TargetName="GridNormalButtons" Property="Grid.Column" Value="1"/>
@@ -104,14 +113,6 @@
                         <Trigger Property="ShowSpinButtons" Value="False">
                             <Setter TargetName="GridLargeButtons" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="GridNormalButtons" Property="Visibility" Value="Collapsed"/>
-                        </Trigger>
-                        <Trigger Property="AllowSpinDown" Value="False">
-                            <Setter TargetName="SpinDownLargeButton" Property="IsEnabled" Value="False"/>
-                            <Setter TargetName="SpinDownNormalButton" Property="IsEnabled" Value="False"/>
-                        </Trigger>
-                        <Trigger Property="AllowSpinUp" Value="False">
-                            <Setter TargetName="SpinUpLargeButton" Property="IsEnabled" Value="False"/>
-                            <Setter TargetName="SpinUpNormalButton" Property="IsEnabled" Value="False"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

@@ -11,7 +11,7 @@ namespace Orc.Controls
     using System.Windows;
     using System.Windows.Media;
     using Catel.MVVM.Views;
-
+    using System.Windows.Controls;
     /// <summary>
     /// Interaction logic for NumericUpDown.xaml
     /// </summary>
@@ -29,7 +29,7 @@ namespace Orc.Controls
         }
         #endregion
 
-        #region Methods
+        #region Properties
         [ViewToViewModel(MappingType = ViewToViewModelMappingType.TwoWayViewWins)]
         public double DecrementValue
         {
@@ -59,6 +59,15 @@ namespace Orc.Controls
 
         public static readonly DependencyProperty IsDecimalAllowedProperty = DependencyProperty.Register("IsDecimalAllowed", typeof(bool),
             typeof(NumericUpDown), new PropertyMetadata(true));
+
+        public bool IsReadOnly
+        {
+            get { return (bool)GetValue(IsReadOnlyProperty); }
+            set { SetValue(IsReadOnlyProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.Register("IsReadOnly", typeof(bool),
+            typeof(NumericUpDown), new PropertyMetadata(false, (sender, e) => ((NumericUpDown)sender).OnIsReadOnlyChanged()));
 
         [ViewToViewModel(MappingType = ViewToViewModelMappingType.TwoWayViewWins)]
         public double MinimumValue
@@ -139,6 +148,17 @@ namespace Orc.Controls
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(double),
             typeof(NumericUpDown), new PropertyMetadata(0D));
+        #endregion
+
+        #region Methods
+        public void OnIsReadOnlyChanged()
+        {
+            TextBox textBoxValue = FindName("TextBoxValue") as TextBox;
+            if (textBoxValue != null)
+            {
+                textBoxValue.IsReadOnly = IsReadOnly;
+            }
+        }
         #endregion
     }
 }

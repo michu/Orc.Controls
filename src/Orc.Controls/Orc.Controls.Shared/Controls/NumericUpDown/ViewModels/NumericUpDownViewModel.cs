@@ -23,11 +23,16 @@ namespace Orc.Controls
         #region Constructors
         public NumericUpDownViewModel()
         {
+            AllowSpinUp = (Value >= MaximumValue) ? false : true;
+            AllowSpinDown = (Value <= MinimumValue) ? false : true;
+
             Spin = new Command<SpinEventArgs>(OnSpinExecute);
         }
         #endregion
 
         #region Properties
+        public bool AllowSpinDown { get; private set; }
+        public bool AllowSpinUp { get; private set; }
         public double DecrementValue { get; set; }
         public double IncrementValue { get; set; }
         public bool IsDecimalAllowed { get; set; }
@@ -80,16 +85,22 @@ namespace Orc.Controls
                 Value = MaximumValue;
             }
 
+            if (e.HasPropertyChanged("MinimumValue") || e.HasPropertyChanged("MaximumValue") || e.HasPropertyChanged("Value"))
+            {
+                AllowSpinUp = (Value >= MaximumValue) ? false : true;
+                AllowSpinDown = (Value <= MinimumValue) ? false : true;
+            }
+
             base.OnPropertyChanged(e);
         }
 
         private void OnSpinExecute(SpinEventArgs args)
         {
-            if (args.Direction == SpinDirection.Up)
+            if (args.Direction == SpinDirection.Up && AllowSpinUp)
             {
                 Value += IncrementValue;
             }
-            else
+            else if (args.Direction == SpinDirection.Down && AllowSpinDown)
             {
                 Value -= DecrementValue;
             }

@@ -3,7 +3,8 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                    xmlns:catel="http://catel.codeplex.com"
-                   xmlns:local="clr-namespace:Orc.Controls">
+                   xmlns:local="clr-namespace:Orc.Controls"
+                   xmlns:converters="clr-namespace:Orc.Controls.Converters">
 
     <catel:StackGrid>
         <catel:StackGrid.RowDefinitions>
@@ -15,6 +16,18 @@
                        SpinButtonsSize="{Binding SpinButtonsSize}"
                        SpinOnKeyboardEvents="{Binding SpinOnKeyboardEvents}"
                        SpinOnMouseEvents="{Binding SpinOnMouseEvents}">
+            <local:Spinner.AllowSpinDown>
+                <MultiBinding Converter="{converters:AllowSpinMultiValueConverter}">
+                    <Binding Path="IsReadOnly" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:NumericUpDown}}"/>
+                    <Binding Path="AllowSpinDown"/>
+                </MultiBinding>
+            </local:Spinner.AllowSpinDown>
+            <local:Spinner.AllowSpinUp>
+                <MultiBinding Converter="{converters:AllowSpinMultiValueConverter}">
+                    <Binding Path="IsReadOnly" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:NumericUpDown}}"/>
+                    <Binding Path="AllowSpinUp"/>
+                </MultiBinding>
+            </local:Spinner.AllowSpinUp>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Spin">
                     <catel:EventToCommand Command="{Binding Spin}"
@@ -22,7 +35,8 @@
                                           PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <TextBox Text="{Binding Value}">
+            <TextBox x:Name="TextBoxValue"
+                     Text="{Binding Value}">
                 <i:Interaction.Behaviors>
                     <catel:NumericTextBox IsDecimalAllowed="{Binding IsDecimalAllowed}"
                                           IsNegativeAllowed="True"
